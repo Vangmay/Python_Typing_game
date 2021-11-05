@@ -31,6 +31,7 @@ def clearConsole():
     os.system(command)
 
 def game(words):
+    error = 0
     NumOfWords = len(words)
     start = timer()
     for i in range(0,len(words)):
@@ -43,12 +44,15 @@ def game(words):
         user_word = ''
         while (user_word != word):
             user_word = input("Type here: ")
+            if user_word != word:
+                error = error + 1
     end = timer()
     time = end - start 
     time = time / 60 
     speed = NumOfWords / time
     speed = round(speed,2)
     print("Speed: ", speed , "WPM")
+    print("errors: ", error )
 if __name__ == "__main__":
     my_list = MakeList(wordsList,words)
     game(my_list)
