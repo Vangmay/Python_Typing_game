@@ -2,7 +2,14 @@ from random import randint
 import os
 from timeit import default_timer as timer
 
-Word_List = ["The" ,"quick" ,"brown" ,"fox" ,"jumped" ,"over" ,"the" ,"lazy", "dog"]
+wordsList = []
+
+fileList = ['./Words/Long_eng.txt','./Words/medium_eng.txt','./Words/short_eng.txt']
+for i in range(0,len(fileList)):
+    textFile = open(fileList[i],'r')
+    for line in textFile:
+        Linee = line.strip()
+        wordsList.append(Linee)
 
 words = int(input("How many words? "))
 
@@ -29,7 +36,10 @@ def game(words):
     for i in range(0,len(words)):
         word = words[i]
         clearConsole()
-        print("Word: ",words[i])
+        if i + 1 < len(words):
+            print("Word: ",words[i]   , "   Next Word:",words[i+1])
+        else:
+            print("Word: ",words[i])
         user_word = ''
         while (user_word != word):
             user_word = input("Type here: ")
@@ -40,5 +50,5 @@ def game(words):
     speed = round(speed,2)
     print("Speed: ", speed , "WPM")
 if __name__ == "__main__":
-    my_list = MakeList(Word_List,words)
+    my_list = MakeList(wordsList,words)
     game(my_list)
